@@ -31,6 +31,7 @@ const Board = mongoose.model('Board', {
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
+*/
 
 const userSchema = new mongoose.Schema({
     email: String,
@@ -55,6 +56,7 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema);
 
+/*
 const taskCreateSchema = {
     type: "object",
     properties: {
@@ -112,13 +114,13 @@ validateTask = (document, method) => {
 validateBoard = (document) => {
     return ajv.validate(boardSchema, document);
 }
+*/
 
 module.exports = {
-    Task,
-    Board,
+    //Task,
+    //Board,
     User,
-    validateTask,
-    validateBoard,
+    //validateTask,
+    //validateBoard,
 }
 
-*/

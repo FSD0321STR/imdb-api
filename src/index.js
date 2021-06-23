@@ -19,10 +19,12 @@ app.use(cors({
 
 app.use(express.json());
 app.use(AuthRouter);
-app.use('/topic', UserRouter);
+/*
+app.use('/topic', TopicRouter);
 app.use('/category', CategoryRouter);
 app.use('/comment', CommentRouter);
-app.use('/user', TopicRouter);
+app.use('/user', UserRouter);
+*/
 
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
