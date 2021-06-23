@@ -26,5 +26,4 @@ app.use('/comment', CommentRouter);
 app.use('/user', UserRouter);
 */
 
-
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
