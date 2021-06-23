@@ -19,6 +19,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(AuthRouter);
+
 /*
 app.use('/topic', TopicRouter);
 app.use('/category', CategoryRouter);

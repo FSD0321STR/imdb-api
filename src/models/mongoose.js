@@ -1,3 +1,9 @@
+// Jash - Category 
+// Mounir - Comments
+// Giorgos - Topics
+
+
+
 require('dotenv').config();
 const Ajv = require('ajv');
 const ajv = new Ajv();
