@@ -6,7 +6,11 @@ const register = async ({ email, password }) => {
     if (user) {
         return false;
     }
+<<<<<<< HEAD
     user = await UserSevice.create({email, password});
+=======
+    user = await UserSevice.create({ email, password });
+>>>>>>> 3dee351cec862e87e17fa91de73739ca070b2cc8
     return user;
 }
 
