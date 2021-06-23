@@ -13,4 +13,8 @@ const comparePasswords = ({ hash, plain }) => {
 module.exports = {
     encryptPassword,
     comparePasswords,
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3dee351cec862e87e17fa91de73739ca070b2cc8
