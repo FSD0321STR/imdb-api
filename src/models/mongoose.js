@@ -4,7 +4,8 @@ const ajv = new Ajv();
 const mongoose = require('mongoose');
 const { encryptPassword } = require('../helpers/password');
 
-mongoose.connect(`mongodb+srv://Nucliostudent:tc13ybK3goJTQMpm@mongotraining.lk4fc.mongodb.net/tasker?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://dbIMDB:IMdb2121@project-imdb-cluster.fipev.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 /*
 const Task = mongoose.model('Task', {
