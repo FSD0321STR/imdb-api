@@ -13,33 +13,6 @@ const { encryptPassword } = require('../helpers/password');
 mongoose.connect(`mongodb+srv://dbIMDB:IMdb2121@project-imdb-cluster.fipev.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-/*
-const Task = mongoose.model('Task', {
-    title: String,
-    completed: { type: Boolean, default: false },
-    board: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Board',
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-});
-
-const Board = mongoose.model('Board', {
-    title: String,
-    tasks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task'
-    }],
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-});
-*/
-
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
@@ -63,71 +36,97 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema);
 
-/*
-const taskCreateSchema = {
+
+const Category = mongoose.model('Category', {
+    title: String,
+    desc: String,
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+});
+
+const categorySchema = {
     type: "object",
     properties: {
       title: {type: "string"},
-      board: {type: "string"},
-    },
-    required: ["title", "board"],
-    additionalProperties: false
-};
-
-
-const taskUpdateSchema = {
-    type: "object",
-    properties: {
-      title: { type: "string" },
-      completed: { type: "boolean" },
-      board: { type: "string" },
-    },
-    required: ["title", "completed"],
-    additionalProperties: false
-};
-
-
-const taskPatchSchema = {
-    type: "object",
-    properties: {
-      title: {type: "string"},
-      completed: {type: "boolean"},
-    },
-    required: [],
-    additionalProperties: false
-};
-
-const boardSchema = {
-    type: "object",
-    properties: {
-      title: {type: "string"}
+      desc: {type: "string"},
     },
     required: ["title"],
     additionalProperties: false
 };
 
 
-validateTask = (document, method) => {
-    switch (method) {
-        case 'POST':
-            return ajv.validate(taskCreateSchema, document);
-        case 'PUT':
-            return ajv.validate(taskUpdateSchema, document);;
-        case 'PATCH':
-            return ajv.validate(taskPatchSchema, document);;
-    }
+
+validateCategory = (document) => {
+    return ajv.validate(categorySchema, document);
 }
 
-validateBoard = (document) => {
-    return ajv.validate(boardSchema, document);
+const Topic = mongoose.model('Topic', {
+    title: String,
+    desc: String,
+    img: String,
+    category: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category'
+        }
+    ],
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+});
+
+const topicSchema = {
+    type: "object",
+    properties: {
+      title: {type: "string"},
+      desc: {type: "string"},
+    },
+    required: ["title","desc"],
+    additionalProperties: true
+};
+
+validateTopic = (document) => {
+    return ajv.validate(topicSchema, document);
 }
-*/
+
+const Comment = mongoose.model('Comment', {
+    title: String,
+    desc: String,
+    topic:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category'
+        },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+});
+
+const commentSchema = {
+    type: "object",
+    properties: {
+      title: {type: "string"},
+      desc: {type: "string"},
+      topic: {type: "string"},
+      user: {type: "string"}
+    },
+    required: ["title","desc","user","topic"],
+    additionalProperties: false
+};
+
+validateComment = (document) => {
+    return ajv.validate(commentSchema, document);
+}
+
 
 module.exports = {
-    //Task,
-    //Board,
+    Category,
+    validateCategory,
+    Topic,
+    validateTopic,
     User,
-    //validateTask,
-    //validateBoard,
+    Comment,
+    validateComment,
 }
 
