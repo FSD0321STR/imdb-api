@@ -12,43 +12,12 @@ const { encryptPassword } = require('../helpers/password');
 
 mongoose.connect(`mongodb+srv://dbIMDB:IMdb2121@project-imdb-cluster.fipev.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 
-
-/*
-const Task = mongoose.model('Task', {
-    title: String,
-    completed: { type: Boolean, default: false },
-    board: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Board',
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-});
-
-const Board = mongoose.model('Board', {
-    title: String,
-    tasks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task'
-    }],
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-});
-*/
-
+// SCHEMA USER
 const userSchema = new mongoose.Schema({
+    fname: String,
+    lname: String,
     email: String,
     password: String,
-    boards: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Board'
-        }
-    ],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
