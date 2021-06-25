@@ -12,12 +12,14 @@ const register = async ({ email, password, fname, lname }) => {
 
 const login = async ({ email, password }) => {
     const user = await UserSevice.findByEmail(email);
-    const equalPasswords = await comparePasswords({
-        plain: password,
-        hash: user.password,
-    });
-    if (equalPasswords) {
-        return user;
+    if (user) {
+        const equalPasswords = await comparePasswords({
+            plain: password,
+            hash: user.password,
+        });
+        if (equalPasswords) {
+            return user;
+        }
     }
     return false;
 }
