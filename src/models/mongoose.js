@@ -32,71 +32,12 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema);
 
-/*
-const taskCreateSchema = {
-    type: "object",
-    properties: {
-      title: {type: "string"},
-      board: {type: "string"},
-    },
-    required: ["title", "board"],
-    additionalProperties: false
-};
 
 
-const taskUpdateSchema = {
-    type: "object",
-    properties: {
-      title: { type: "string" },
-      completed: { type: "boolean" },
-      board: { type: "string" },
-    },
-    required: ["title", "completed"],
-    additionalProperties: false
-};
-
-
-const taskPatchSchema = {
-    type: "object",
-    properties: {
-      title: {type: "string"},
-      completed: {type: "boolean"},
-    },
-    required: [],
-    additionalProperties: false
-};
-
-const boardSchema = {
-    type: "object",
-    properties: {
-      title: {type: "string"}
-    },
-    required: ["title"],
-    additionalProperties: false
-};
-
-
-validateTask = (document, method) => {
-    switch (method) {
-        case 'POST':
-            return ajv.validate(taskCreateSchema, document);
-        case 'PUT':
-            return ajv.validate(taskUpdateSchema, document);;
-        case 'PATCH':
-            return ajv.validate(taskPatchSchema, document);;
-    }
-}
-
-validateBoard = (document) => {
-    return ajv.validate(boardSchema, document);
-}
-*/
 
 module.exports = {
-    //Task,
-    //Board,
+
     User,
-    //validateTask,
-    //validateBoard,
+
 }
 
