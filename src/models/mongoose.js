@@ -3,7 +3,6 @@
 // Giorgos - Topics
 
 
-
 require('dotenv').config();
 const Ajv = require('ajv');
 const ajv = new Ajv();
@@ -16,12 +15,8 @@ mongoose.connect(`mongodb+srv://dbIMDB:IMdb2121@project-imdb-cluster.fipev.mongo
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
-    boards: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Board'
-        }
-    ],
+    fname: String,
+    lname: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
@@ -47,8 +42,8 @@ const Category = mongoose.model('Category', {
 const categorySchema = {
     type: "object",
     properties: {
-      title: {type: "string"},
-      desc: {type: "string"},
+        title: { type: "string" },
+        desc: { type: "string" },
     },
     required: ["title"],
     additionalProperties: false
@@ -77,10 +72,10 @@ const Topic = mongoose.model('Topic', {
 const topicSchema = {
     type: "object",
     properties: {
-      title: {type: "string"},
-      desc: {type: "string"},
+        title: { type: "string" },
+        desc: { type: "string" },
     },
-    required: ["title","desc"],
+    required: ["title", "desc"],
     additionalProperties: true
 };
 
@@ -91,10 +86,10 @@ validateTopic = (document) => {
 const Comment = mongoose.model('Comment', {
     title: String,
     desc: String,
-    topic:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Category'
-        },
+    topic: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -106,12 +101,12 @@ const Comment = mongoose.model('Comment', {
 const commentSchema = {
     type: "object",
     properties: {
-      title: {type: "string"},
-      desc: {type: "string"},
-      topic: {type: "string"},
-      user: {type: "string"}
+        title: { type: "string" },
+        desc: { type: "string" },
+        topic: { type: "string" },
+        user: { type: "string" }
     },
-    required: ["title","desc","user","topic"],
+    required: ["title", "desc", "user", "topic"],
     additionalProperties: false
 };
 
