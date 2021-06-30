@@ -3,7 +3,13 @@ const { Router } = require('express');
 const protect = require('../middlewares/protect');
 
 const router = Router();
-router.use(protect);
+//router.use(protect);
+
+router.get("", async (req, res) => {
+    const users  = await UserService.readAll();
+    return res.status(200).json(users);
+});
+
 
 router.get("/:id", async (req, res) => {
     const user = await UserService.findById(req.params.id);
@@ -20,6 +26,7 @@ router.put("/:id", async (req, res) => {
     const body = req.body;
     const { id } = req.params
     const user = await UserService.update(id, body);
+    console.log(user);
     return res.status(200).json(user)
 });
 

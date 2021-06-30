@@ -15,7 +15,7 @@ const readAll = async () => {
 }
 
 const update = async (id, fields) => {
-    const document = await Board.findById(id).exec();
+    const document = await Category.findById(id).exec();
     const newDocument = {
         ...document.toObject(),
         ...fields,
@@ -26,7 +26,7 @@ const update = async (id, fields) => {
 }
 
 const remove = async (id) => {
-    const response = await Board.findByIdAndDelete(id).exec();
+    const response = await Category.findByIdAndDelete(id).exec();
     return response !== null;
 }
 
