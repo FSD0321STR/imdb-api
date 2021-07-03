@@ -12,11 +12,12 @@ const { encryptPassword } = require('../helpers/password');
 mongoose.connect(`mongodb+srv://dbIMDB:IMdb2121@project-imdb-cluster.fipev.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
+// SCHEMA USER
 const userSchema = new mongoose.Schema({
-    email: String,
-    password: String,
     fname: String,
     lname: String,
+    email: String,
+    password: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
