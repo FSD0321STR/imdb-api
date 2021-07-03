@@ -6,10 +6,9 @@ const router = Router();
 //router.use(protect);
 
 router.get("", async (req, res) => {
-    const users  = await UserService.readAll();
+    const users = await UserService.readAll();
     return res.status(200).json(users);
 });
-
 
 router.get("/:id", async (req, res) => {
     const user = await UserService.findById(req.params.id);
