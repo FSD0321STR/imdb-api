@@ -10,8 +10,14 @@ const read = async (id) => {
 }
 
 const readAll = async () => {
-    return await Topic.find().exec();
+    return await Topic.find().populate({ path: 'category', select: 'title' }).exec();
 }
+
+const readByCategory = async (category) => {
+    return await Topic.find().populate({ path: 'category',match: { title: category },
+    select: 'title' }).exec();
+}
+
 
 const update = async (id, fields) => {
     const document = await Topic.findById(id).exec();
@@ -36,4 +42,5 @@ module.exports = {
     readAll,
     update,
     remove,
+    readByCategory
 }
