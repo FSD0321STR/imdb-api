@@ -28,26 +28,26 @@ router.get("/:id", async (req, res) => {
     return res.status(200).json(topic);
 });
 
-router.post("", validate(validateTopic), async (req, res) => {
+/*router.post("", validate(validateTopic), async (req, res) => {
     const body  = req.body;
     const topic = await TopicService.create(body);
     return res.status(201).json(topic)
-});
+});*/
 
-/*router.post("", upload.single('image'), async(req, res, next) => {
+router.post("", upload.single('image'), async(req, res, next) => {
     console.log(req.body);
-    console.log(req.img);
+    console.log(req.file);
     var obj = {
-        name: req.body.name,
+        title: req.body.title,
         desc: req.body.desc,
-        /*img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.img.filename)),
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
             contentType: req.file.mimetype
-        }*/
-   /* }
+        }
+   }
     const topic = await TopicService.create(obj);
     return res.status(201).json(topic)
-});*/
+});
 
 router.put("/:id", validate(validateTopic), async (req, res) => {
     const body  = req.body;
