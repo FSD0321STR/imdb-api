@@ -34,14 +34,14 @@ router.get("/:id", async (req, res) => {
     return res.status(201).json(topic)
 });*/
 
-router.post("", upload.single('image'), async(req, res, next) => {
+router.post("", upload.single('file'), async(req, res, next) => {
     console.log(req.body);
     console.log(req.file);
     var obj = {
         title: req.body.title,
         desc: req.body.desc,
         img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            data: fs.readFileSync(path.join(__dirname + '../../../uploads/' + req.file.filename)),
             contentType: req.file.mimetype
         }
    }
