@@ -59,7 +59,10 @@ validateCategory = (document) => {
 const Topic = mongoose.model('Topic', {
     title: String,
     desc: String,
-    img: String,
+    img:{
+        data: Buffer,
+        contentType: String
+    },
     category: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -74,7 +77,7 @@ const topicSchema = {
     type: "object",
     properties: {
         title: { type: "string" },
-        desc: { type: "string" },
+        desc: { type: "string" }
     },
     required: ["title", "desc"],
     additionalProperties: true
