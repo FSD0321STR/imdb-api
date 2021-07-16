@@ -14,6 +14,10 @@ const readAll = async () => {
     return await Category.find().exec();
 }
 
+const readByCategory = async (category) => {
+    return await Category.findOne({ 'title': category }).exec();
+}
+
 const update = async (id, fields) => {
     const document = await Category.findById(id).exec();
     const newDocument = {
@@ -37,4 +41,5 @@ module.exports = {
     readAll,
     update,
     remove,
+    readByCategory
 }

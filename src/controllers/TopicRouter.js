@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { validateTopic } = require('../models/mongoose');
 const TopicService = require('../services/TopicService');
+const CategoryService = require('../services/CategoryService');
 const validate = require("../middlewares/validate")
 const protect = require('../middlewares/protect');
 const multer = require('multer');
@@ -37,9 +38,12 @@ router.get("/:id", async (req, res) => {
 router.post("", upload.single('file'), async(req, res, next) => {
     console.log(req.body);
     console.log(req.file);
+    console.log(req.category);
+    const categoryId = await CategoryService.readByCategory(req.body.category);
     var obj = {
-        title: req.body.title,
+        title: req.body.topicTitle,
         desc: req.body.desc,
+        category: categoryId,
         img: {
             data: fs.readFileSync(path.join(__dirname + '../../../uploads/' + req.file.filename)),
             contentType: req.file.mimetype
